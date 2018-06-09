@@ -85,12 +85,12 @@ ul{
 .search a{
 	padding: 0px;
 	position: absolute;
-	top:-5px;
+	top:0px;
 	left: 230px;
 }
 .search img{
 	width: 42px;
-	height: 44px;
+	height: auto;
 }
 .banner img{
 	width:1300px;
@@ -581,4 +581,10 @@ ul{
 	padding-left: 6px;
 	width: 78px;
 	background-color: #a4a4a4;
+}
+.ce1:hover{
+	background-color: #8d8d8d;
+}
+.ce2:hover{
+	background-color: #8d8d8d;
 }
