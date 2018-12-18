@@ -72,13 +72,13 @@ window.onload=function() {
 	//公告滚动
 	var gonggao=document.getElementById('gonggao');
 	for (var i = 0; i<gonggao.children.length; i++) {
-			gonggao.children[i].style.top=i*29+'px';
+			gonggao.children[i].style.top=i*30+'px';
 		}
 	function gg(){
 		id2=setInterval(function(){
 			for (var i = gonggao.children.length - 1; i >= 0; i--)
-				animate2(gonggao.children[i],'top',-29);
-			},330);
+				animate2(gonggao.children[i],'top',-30);
+			},800);
 	}
 	gg();
 	function animate2(obj,attr,num){
@@ -89,8 +89,8 @@ window.onload=function() {
 				obj.style[attr]=(a-=1)+"px";
 			else
 				clearInterval(id);
-			if(a==-29)
-				obj.style[attr]=(gonggao.children.length-1)*29+'px';
+			if(a==-30)
+				obj.style[attr]=(gonggao.children.length-1)*30+'px';
 		},10);
 	}
 	//右侧伸缩
