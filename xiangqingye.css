@@ -19,9 +19,8 @@ body{
 }
 .body{
 	width: 1180px;
-	height: 549px;
+	height: 777px;
 	margin: auto;
-	background-color: white;
 }
 .head{
 	width: 1180px;
@@ -170,10 +169,12 @@ form{
 #daohang>ul>li:first-child>a{
 	background-color: #fe0d4a;
 	padding: 10px 40px;
+	margin-top: -1px;
 	color: white;
 }
 #b5z>a{
 	padding: 10px 30px 10px 45px;
+	margin-top: -1px;
 	color: white;
 }
 #b5z>a:hover{
@@ -181,6 +182,7 @@ form{
 }
 .bhp>a{
 	padding: 10px 32px;
+	margin-top: -1px;
 	color: white;
 }
 .bhp>a:hover{
@@ -191,11 +193,180 @@ form{
 	height: 40px;
 	margin-top: -1px;
 }
-
-
-
-
-
+.lujing{
+	display: inline-block;
+	height: 38px;
+	line-height: 38px;
+}
+.lujing>a{
+	color: black;
+	font-size: 12px;
+}
+.product{
+	width: 994px;
+	height: 631px;
+	display: inline-block;
+	background-color: white;
+}
+[src="./img/ww_07.jpg"]{
+	float: right;
+}
+.left{
+	margin:20px;
+	width: 410px;
+	height: 496px;
+	display: inline-block;
+}
+.border{
+	border: 1px solid #d0cdc7;
+	display: inline-block;
+	width: 408px;
+	height: 408px;
+	margin-bottom: 22px;
+}
+.sml{
+	width: 410px;
+	height: 60px;
+	display: inline-block;
+}
+.sml>img{
+	float: left;
+	display: inline-block;
+	margin-top: 4px;
+	cursor: pointer;
+}
+.sml>img:first-child{
+	margin-top: 0px;
+}
+.sml>img:last-child{
+	margin-top: 0px;
+	float: right;
+}
+.bor{
+	border:2px solid #ff9003;
+}
+.right{
+	width: 502px;
+	height: 496px;
+	display: inline-block;
+	float: right;
+	margin-top: 20px;
+	margin-right: 42px;
+}
+.right>p{
+	display: inline-block;
+}
+.topp{
+	margin-bottom: 5px;
+}
+.shuoming{
+	font-size: 13px;
+	color: #676660;
+	line-height: 24px;
+	margin-bottom: 30px;
+}
+.jiage>span{
+	font-size: 14px;
+	color: #ff0000;
+	margin-left: 62px;
+}
+.jiage>span:first-child{
+	font-size: 12px;
+	color: black;
+	margin-left: 9px;
+}
+.jiage>span:last-child{
+	font-size: 12px;
+	color: black;
+	text-decoration-line: line-through;
+	margin-left: 14px;
+}
+.liang{
+	margin-left: 26px;
+	margin-right: 27px;
+	font-size: 12px;
+	float: left;
+	display: inline-block;
+}
+.ml{
+	display: inline-block;
+	width: 58px;
+	height: 28px;
+	font-size: 12px;
+	text-align: center;
+	line-height: 28px;
+	cursor: pointer;
+}
+.sele{
+	border:1px solid #ff0853;
+	background: url(./img/duigou.png) no-repeat;
+	background-position:bottom right;
+}
+.shu{
+	margin-left: 26px;
+	margin-right: 65px;
+	margin-top: 16px;
+	height: 36px;
+	line-height: 36px;
+	font-size: 12px;
+	float: left;
+	display: inline-block;
+}
+.uppr{
+	display: inline-block;
+	margin-top: 20px;
+	float: left;
+}
+.uppr>button{
+	width: 24px;
+	height: 29px;
+	float: left;
+	cursor: pointer;
+	border:1px solid #cecbc5;
+	line-height: 27px;
+	background-color: white;
+}
+.uppr>input{
+	display: inline-block;
+	width: 50px;
+	height: 27px;
+	float: left;
+	text-align: center;
+	line-height: 27px;
+	border:1px solid #aca7a2;
+}
+.yu{
+	margin-left: 20px;
+	font-size: 12px;
+	height: 36px;
+	line-height: 36px;
+	text-align: center;
+	margin-top: 16px;
+}
+.kucun{
+	font-weight: bolder;
+}
+.xuanze{
+	margin-left: 110px;
+	margin-bottom: 22px;
+}
+.xuanze>span{
+	color: #ff9003;
+}
+.but{
+	width: 150px;
+	height: 40px;
+	color: #ff0754;
+	cursor: pointer;
+	margin-left: 24px;
+	border-radius: 4px;
+	border:1px solid #ff0754;
+	background-color: white;
+}
+.but:last-child{
+	background-color: #ff0754;
+	color: white;
+}
 .bottom{
 	height: 346px;
 	background-color: white;
@@ -272,4 +443,66 @@ form{
 	top:106px;
 	right: 0px;
 	z-index: 1000;
+}
+.xuanfu{
+	width: 120px;
+	position: fixed;
+	top:106px;
+	right: 0px;
+	z-index: 1000;
+}
+.first{
+	position: absolute;
+	left: 80px;
+	overflow: hidden;
+}
+.first img{
+	float: left;
+}
+.first img:first-child{
+	margin-left:-3px;
+}
+.second{
+	width: 120px;
+	height: 140px;
+	position: absolute;
+	left: 80px;
+	top:108px;
+	background-color: #fd9a6e;
+}
+.second p,button{
+	font-size: 12px;
+	display: inline-block;
+}
+.second p{
+	margin-top: 50px;
+	margin-bottom: 10px;
+}
+.second button{
+	width: 44px;
+	color: white;
+	border:1px solid white;
+	background-color: #fd9a6e;
+}
+.second img{
+	float: left;
+}
+.third{
+	width: 120px;
+	height: 160px;
+	position: absolute;
+	left: 80px;
+	top:251px;
+	background-color: #fd9a6e;
+}
+.third img:last-child{
+	margin-top: 40px;
+	margin-left: 12px;
+}
+.fourth{
+	width: 120px;
+	height: 140px;
+	position: absolute;
+	left: 80px;
+	top:413px;
 }
