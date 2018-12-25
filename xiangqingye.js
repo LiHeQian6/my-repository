@@ -78,4 +78,120 @@ window.onload=function() {
 		},10);
 		return id;
 	}
+	//放大镜
+	function magnifier(){
+		var img1=document.getElementById('img1');
+		var slider=document.getElementById('slider');
+		var img2=document.getElementById('img2');
+		var box=document.getElementById('box');
+		var Bimg=document.getElementById('Bimg');
+		img1.onmouseover=function() {
+			slider.style.display='inline-block';
+			img2.style.display='inline-block'
+		}
+		img1.onmouseout=function() {
+			slider.style.display='none';
+			img2.style.display='none'
+		}
+		img1.onmousemove=function(e){
+			var sHeight=slider.offsetHeight;
+			var sWidth=slider.offsetWidth;
+			var iHeight=img1.offsetHeight;
+			var iWidth=img1.offsetWidth;
+			var oT=e.clientY-box.offsetTop-sHeight/2+getScrollTop();
+			var oL=e.clientX-box.offsetLeft-sWidth/2;
+			slider.style.top=oT<0?oT=0:(oT>iHeight-sHeight?oT=iHeight-sHeight:oT)+'px';
+			slider.style.left=oL<0?oL=0:(oL>iWidth-sWidth?oL=iWidth-sWidth:oL)+'px';
+			Bimg.style.top=-(oT<0?oT=0:(oT>iHeight-sHeight?oT=iHeight-sHeight:oT))*(1000/408)+'px';
+			Bimg.style.left=-(oL<0?oL=0:(oL>iWidth-sWidth?oL=iWidth-sWidth:oL)*(1000/408))+'px';
+		}
+	}
+	magnifier();
+	function getScrollTop() {  
+        var scrollPos;  
+        if (window.pageYOffset) {  
+        scrollPos = window.pageYOffset;
+        }  
+        else if (document.compatMode && document.compatMode != 'BackCompat'){ 
+        	scrollPos = document.documentElement.scrollTop;
+        }  
+        else if (document.body) { 
+        	scrollPos = document.body.scrollTop;
+        }   
+        return scrollPos;   
+	} 
+	//容量选择
+	var sel=document.getElementsByClassName('ml');
+	var xuanze=document.getElementsByClassName('xuanze')[0];
+	sel[0].onclick=function(){
+		this.id="sele";
+		sel[1].id="";
+		var ml=document.getElementById('sele');
+		xuanze.lastElementChild.innerHTML='"'+ml.innerHTML+'"';
+	}
+	sel[1].onclick=function(){
+		this.id="sele";
+		sel[0].id="";
+		var ml=document.getElementById('sele');
+		xuanze.lastElementChild.innerHTML='"'+ml.innerHTML+'"';
+	}
+	//数量加减
+	var add=document.getElementsByClassName('uppr')[0];
+	var num=document.getElementsByClassName('num')[0];
+	var kucun=document.getElementsByClassName('kucun')[0];
+	add.firstElementChild.onclick=function(){
+		if(num.value>1)
+			num.value--;
+		if(num.value<=1)
+			add.firstElementChild.style.cursor="not-allowed";
+	}
+	add.lastElementChild.onclick=function(){
+		add.firstElementChild.style.cursor="pointer";
+		if(num.value<kucun.innerHTML)
+			num.value++;
+	}
+	num.onchange=function(){
+		add.firstElementChild.style.cursor="pointer";
+		if(this.value<=1){
+			this.value=1;
+			add.firstElementChild.style.cursor="not-allowed";
+		}
+		else if(this.value>kucun.innerHTML)
+			this.value=kucun.innerHTML;
+	}
+	//放大镜换图片
+	var show=document.getElementsByClassName('sml')[0];
+	show.children[1].onclick=function(){
+		show.children[2].className="";
+		this.className="bor";
+		img1.firstElementChild.src="./img/pp0.jpeg";
+		img2.firstElementChild.src="./img/pp0.jpeg";
+	}
+	show.children[2].onclick=function(){
+		show.children[1].className="";
+		this.className="bor";
+		img1.firstElementChild.src="./img/pp1.jpeg";
+		img2.firstElementChild.src="./img/pp1.jpeg";
+	}
+	//加入购物车
+	var shopcar=document.getElementsByClassName('but')[1];
+	var upper=document.getElementById('upper');
+	var windows=document.getElementById('windows');
+	shopcar.onclick=function(){
+		upper.style.display='inline-block';
+		windows.style.display='inline-block';
+	}
+	windows.firstElementChild.onclick=function(){
+		upper.style.display='none';
+		windows.style.display='none';
+	}
+	windows.children[2].onclick=function(){
+		upper.style.display='none';
+		windows.style.display='none';
+	}
+	windows.children[3].onclick=function(){
+		upper.style.display='none';
+		windows.style.display='none';
+	}
+
 }

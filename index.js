@@ -8,14 +8,14 @@ window.onload=function() {
 			cover.style.position='static';
 	}
 	//轮播图
-	var dian=document.getElementsByClassName('dian');
+	/*var dian=document.getElementsByClassName('dian');
 	dian[0].style.backgroundColor='#fe6c00';
 	dian[0].style.color='#476954';
 	function lunbo(){
 		var img=document.getElementsByClassName('ban');
 		id1=setInterval(function(){
 			for (var i = img.length - 1; i >= 0; i--)
-				animate1(img[i],'left',-800);
+				animate1(img[i],'left',parseInt(getStyle(img[i],'left'))-800);
 			for (var i = img.length - 1; i >= 0; i--){
 				if(0<=parseInt(getStyle(img[i],'left'))&&parseInt(getStyle(img[i],'left'))<800){
 			 		if(i<5){
@@ -46,17 +46,18 @@ window.onload=function() {
 		}
 	lunbo();
 	function animate1(obj,attr,num){
-		var a=parseInt(getStyle(obj,attr));
-		var m=a;
-		var id=setInterval(function(){
-			if(a!=m+num)
-				obj.style[attr]=(a-=10)+"px";
+			var id=setInterval(function(){
+			var a=parseInt(getStyle(obj,attr));
+			var speed=(num-a)/5;
+			speed=speed>0?Math.ceil(speed):Math.floor(speed);
+			if(a!=num)
+				obj.style[attr]=a+speed+"px";
 			else
 				clearInterval(id);
 			if(a<=-800)
 			obj.style['left']=5*800+'px';
-		},10);
-	}
+		},40);
+	}*/
 	function getStyle(obj,style) {
 		if(obj.currentStyle) {
 			return obj.currentStyle[style];
@@ -70,7 +71,7 @@ window.onload=function() {
 		money.nextElementSibling.innerHTML='￥'+money.value;
 	}
 	//公告滚动
-	var gonggao=document.getElementById('gonggao');
+	/*var gonggao=document.getElementById('gonggao');
 	for (var i = 0; i<gonggao.children.length; i++) {
 			gonggao.children[i].style.top=i*30+'px';
 		}
@@ -92,7 +93,7 @@ window.onload=function() {
 			if(a==-30)
 				obj.style[attr]=(gonggao.children.length-1)*30+'px';
 		},10);
-	}
+	}*/
 	//右侧伸缩
 	function shensuo(){
 		var xuanfu=document.getElementsByClassName('xuanfu')[0];
@@ -170,10 +171,10 @@ window.onload=function() {
 	 	lunbo();
 	 }
 	 //点击左右箭头
-	 bann.lastElementChild.onclick=function(){
+	 /*bann.lastElementChild.onclick=function(){
 	 	if(parseInt(getStyle(img[0],'left'))%800==0){
 	 		for (var i = img.length - 1; i >= 0; i--){
-	 			animate1(img[i],'left',-800);
+	 			animate1(img[i],'left',parseInt(getStyle(img[i],'left'))-800);
 	 			if(0<=parseInt(getStyle(img[i],'left'))&&parseInt(getStyle(img[i],'left'))<800){
 			 		if(i<5){
 			 			dian[i+1].style.backgroundColor='#fe6c00';
@@ -223,7 +224,7 @@ window.onload=function() {
 			 			dian[5].style.color='black';
 			 		}
 		 		}
-			 	animate5(img[i],'left',800);
+			 	animate1(img[i],'left',parseInt(getStyle(img[i],'left'))+800);
 	 		}
 	 	}
 	 }
@@ -236,7 +237,7 @@ window.onload=function() {
 			else
 				clearInterval(id);
 		},10);
-	}
+	}*/
 	 //轮播对应圆点
 	 for (var i = dian.length - 1; i >= 0; i--) {
 	 	dian[i].onclick=function(){
