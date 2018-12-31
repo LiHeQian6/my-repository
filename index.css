@@ -22,6 +22,7 @@ body{
 	height: 549px;
 	margin: auto;
 	background-color: white;
+	overflow: hidden;
 }
 .head{
 	width: 1180px;
