@@ -225,44 +225,59 @@ form{
 .fenlei>ul>li>span>a:hover{
 	color: #ff4d04;
 }
-
-#banner{
-	width: 800px;
-	height:362px;
-	display: flex;
-	float: right;
-	overflow:hidden;
+.box{
+	width: 798px;
+	height: 361px;
 	position: relative;
+	overflow: hidden;
+	display: inline-block;
+	float: right;
 }
-#banner>div{
+.slider{
+	width: 6400px;
+	position: absolute;
+	left: -800px;
+}
+.slide{
+	width: 800px;
+	overflow: hidden;
+	float: left;
+}
+.box>span{
+	display: block;
+	text-align: center;
+	cursor: pointer;
+	color: #fff;
+	top: 153px;
+	line-height: 50px;
+	font-size: 30px;
+	position: absolute;
+	opacity: 0;
+}
+#left{
+	left: 30px;
+}
+#right{
+	right: 30px;
+}
+.nav{
+	position: absolute;
+	left: 278px;
+	bottom: 20px;
+}
+.nav>li{
+	float: left;
 	width: 20px;
 	height: 20px;
-	border-radius: 10px;
 	background-color: white;
-	z-index: 666;
-	font-size: 13px;
 	text-align: center;
-	position: relative;
-	top:326px;
-	left: 330px;
-	margin-right: 5px;
+	cursor: pointer;
+	margin: 0 10px;
+	border-radius: 50%;
 }
-#banner>img{
-	z-index: 666;
-	width: 60px;
-	height: 60px;
-	position: relative;
-	top:153px;
-	left: -140px;
-	display: none;
-}
-#banner>img:last-child{
-	left: 518px;
-}
-#banner>a>img{
-	width: 800px;
-	height: 366px;
-	position:absolute;
+.nav .active{
+	background: #fe6c00;
+	color: #476954;
 }
 .gonggao{
 	width: 212px;
@@ -309,8 +324,8 @@ form{
 }
 .yiwen{
 	width: 169px;
-	float: left;
 	display: inline-block;
+	float: left;
 }
 .yiwen>li{
 	padding-top: 10px;
@@ -343,7 +358,7 @@ form{
 }
 .four>img{
 	float: left;
-	margin-top: -61px;
+	margin-top: -62px;
 	border-top: 2px solid #fe6c00;
 }
 #huafei{

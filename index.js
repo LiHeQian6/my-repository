@@ -8,92 +8,140 @@ window.onload=function() {
 			cover.style.position='static';
 	}
 	//轮播图
-	/*var dian=document.getElementsByClassName('dian');
-	dian[0].style.backgroundColor='#fe6c00';
-	dian[0].style.color='#476954';
+	var slider=document.getElementById("slider");
+	var box=document.getElementById('box');
+	var left=document.getElementById('left');
+	var right=document.getElementById('right');
+	var oNavlist=document.getElementById('nav').children;
+	var index=1;
 	function lunbo(){
-		var img=document.getElementsByClassName('ban');
-		id1=setInterval(function(){
-			for (var i = img.length - 1; i >= 0; i--)
-				animate1(img[i],'left',parseInt(getStyle(img[i],'left'))-800);
-			for (var i = img.length - 1; i >= 0; i--){
-				if(0<=parseInt(getStyle(img[i],'left'))&&parseInt(getStyle(img[i],'left'))<800){
-			 		if(i<5){
-			 			dian[i+1].style.backgroundColor='#fe6c00';
-			 			dian[i+1].style.color='#476954';
-			 		}
-			 		else{
-			 			dian[0].style.backgroundColor='#fe6c00';
-			 			dian[0].style.color='#476954';
-			 		}
-			 	}
-			 	else{
-			 		if(i<5){
-			 			dian[i+1].style.backgroundColor='white';
-			 			dian[i+1].style.color='black';
-			 		}
-			 		else{
-			 			dian[0].style.backgroundColor='white';
-			 			dian[0].style.color='black';
-			 		}
-		 		}
-			}
-		},3000);
-	}
-	var img=document.getElementsByClassName('ban');
-	for (var i =0; i <img.length; i++) {
-			img[i].style['left']=i*800+'px';
-		}
-	lunbo();
-	function animate1(obj,attr,num){
-			var id=setInterval(function(){
-			var a=parseInt(getStyle(obj,attr));
-			var speed=(num-a)/5;
-			speed=speed>0?Math.ceil(speed):Math.floor(speed);
-			if(a!=num)
-				obj.style[attr]=a+speed+"px";
-			else
-				clearInterval(id);
-			if(a<=-800)
-			obj.style['left']=5*800+'px';
-		},40);
-	}*/
-	function getStyle(obj,style) {
-		if(obj.currentStyle) {
-			return obj.currentStyle[style];
-		} else {
-			return getComputedStyle(obj)[style];
+		if(parseInt(getStyle(slider,'left'))%800==0){
+			++index;
+			animate(slider,{left:-800*index},function(){
+				if(index==7){
+					slider.style.left=-800+'px';
+					index=1;
+				}
+			});
+			navchange(index);
 		}
 	}
+	var timer=setInterval(lunbo,3200);
+	function animate(obj,json,callback){
+		clearInterval(obj.timer);
+		obj.timer=setInterval(
+			function(){
+				var isStop=true;
+				for(var attr in json){
+					if(attr=='opacity'){
+						var now=parseInt(getStyle(obj,attr)*100);
+					}else{
+						var now=parseInt(getStyle(obj,attr));
+					}
+					var speed=(json[attr]-now)/5;
+					speed=speed>0?Math.ceil(speed):Math.floor(speed);
+					if(attr=='opacity'){
+						obj.style[attr]=(now+speed)/100;
+					}else{
+						obj.style[attr]=now+speed+'px';
+					}
+					var current=now+speed;
+					if(json[attr]!==current){
+						isStop=false;
+					}
+				}
+				if(isStop){
+					clearInterval(obj.timer);
+					callback&&callback();
+				}
+		},40)
+	}
+	function getStyle(obj,style){
+    	if(getComputedStyle(obj))
+    	return getComputedStyle(obj)[style]
+    	else
+    		obj.currentStyle[style]
+    }
+    box.onmouseover=function(){
+    	clearInterval(timer);
+    	animate(left,{opacity:50});
+    	animate(right,{opacity:50});
+    }
+    box.onmouseout=function(){
+    	timer=setInterval(lunbo,3200);
+    	animate(left,{opacity:0});
+    	animate(right,{opacity:0});
+    }
+    right.onclick=lunbo;
+    left.onclick=function(){
+    	if(parseInt(getStyle(slider,'left'))%800==0){
+    		index--;
+			animate(slider,{left:-800*index},function(){
+				if(index==0){
+					slider.style.left=-4800+'px';
+					index=6; 
+				}
+			});
+			navchange(index);
+    	}
+    }
+    for (var i = oNavlist.length - 1; i >= 0; i--) {
+    	oNavlist[i].index=i+1;
+    	oNavlist[i].onclick=function(){
+    		index=this.index;
+    		animate(slider,{left:-800*this.index});
+    		navchange(this.index);
+    	}
+    }
+    function navchange(n){
+    	for (var i = oNavlist.length - 1; i >= 0; i--) {
+    		oNavlist[i].className="";
+    	}
+    	if(n==7)
+    		oNavlist[0].className="active";
+    	else if(n==0)
+    		oNavlist[5].className="active";
+    	else
+    		oNavlist[n-1].className="active";
+    }
 	//话费金额
 	var money=document.getElementsByTagName('select')[0];
 	money.onchange=function(){
 		money.nextElementSibling.innerHTML='￥'+money.value;
 	}
 	//公告滚动
-	/*var gonggao=document.getElementById('gonggao');
+	var gonggao=document.getElementById('gonggao');
 	for (var i = 0; i<gonggao.children.length; i++) {
 			gonggao.children[i].style.top=i*30+'px';
 		}
 	function gg(){
 		id2=setInterval(function(){
-			for (var i = gonggao.children.length - 1; i >= 0; i--)
-				animate2(gonggao.children[i],'top',-30);
-			},800);
+			for (var i = gonggao.children.length - 1; i >= 0; i--){
+				if(parseInt(getStyle(gonggao.children[i],'top'))<=-30)
+					gonggao.children[i].style.top=390+'px';
+				animate2(gonggao.children[i],{top:parseInt(getStyle(gonggao.children[i],'top'))-30});
+			}
+		},560);
 	}
 	gg();
-	function animate2(obj,attr,num){
-		var a=parseInt(getStyle(obj,attr));
-		var m=a;
-		var id=setInterval(function(){
-			if(a!=m+num)
-				obj.style[attr]=(a-=1)+"px";
-			else
-				clearInterval(id);
-			if(a==-30)
-				obj.style[attr]=(gonggao.children.length-1)*30+'px';
-		},10);
-	}*/
+	function animate2(obj,json,callback){
+		clearInterval(obj.timer);
+		obj.timer=setInterval(
+			function(){
+				var isStop=true;
+				for(var attr in json){
+					var now=parseInt(getStyle(obj,attr));
+					var speed=-3;
+					obj.style[attr]=now+speed+'px';
+					var current=now+speed;
+					if(json[attr]!==current){
+						isStop=false;
+					}
+				}
+				if(isStop)
+					clearInterval(obj.timer);
+		},40)
+	}
 	//右侧伸缩
 	function shensuo(){
 		var xuanfu=document.getElementsByClassName('xuanfu')[0];
@@ -158,92 +206,6 @@ window.onload=function() {
 		},10);
 		return id;
 	}
-	//轮播图移入
-	 var bann=document.getElementById('banner');
-	 bann.onmouseover=function(){
-	 	clearInterval(id1);
-	 	bann.lastElementChild.style.display='inline-block';
-	 	bann.lastElementChild.previousElementSibling.style.display='inline-block';
-	 }
-	 bann.onmouseout=function(){
-		bann.lastElementChild.style.display='none';
-	 	bann.lastElementChild.previousElementSibling.style.display='none';
-	 	lunbo();
-	 }
-	 //点击左右箭头
-	 /*bann.lastElementChild.onclick=function(){
-	 	if(parseInt(getStyle(img[0],'left'))%800==0){
-	 		for (var i = img.length - 1; i >= 0; i--){
-	 			animate1(img[i],'left',parseInt(getStyle(img[i],'left'))-800);
-	 			if(0<=parseInt(getStyle(img[i],'left'))&&parseInt(getStyle(img[i],'left'))<800){
-			 		if(i<5){
-			 			dian[i+1].style.backgroundColor='#fe6c00';
-			 			dian[i+1].style.color='#476954';
-			 		}
-			 		else{
-			 			dian[0].style.backgroundColor='#fe6c00';
-			 			dian[0].style.color='#476954';
-			 		}
-			 	}
-			 	else{
-			 		if(i<5){
-			 			dian[i+1].style.backgroundColor='white';
-			 			dian[i+1].style.color='black';
-			 		}
-			 		else{
-			 			dian[0].style.backgroundColor='white';
-			 			dian[0].style.color='black';
-			 		}
-		 		}
-	 		}
-	 	}
-	 }
-	 bann.lastElementChild.previousElementSibling.onclick=function(){
-	 	if(parseInt(getStyle(img[0],'left'))%800==0){
-	 		for (var i = img.length - 1; i >= 0; i--){
-	 			var a=parseInt(getStyle(img[i],'left'));
-				if(a>=5*800)
-					img[i].style['left']=-800+'px';
-				if(0<=parseInt(getStyle(img[i],'left'))&&parseInt(getStyle(img[i],'left'))<800){
-			 		if(i>0){
-			 			dian[i-1].style.backgroundColor='#fe6c00';
-			 			dian[i-1].style.color='#476954';
-			 		}
-			 		else{
-			 			dian[5].style.backgroundColor='#fe6c00';
-			 			dian[5].style.color='#476954';
-			 		}
-			 	}
-			 	else{
-			 		if(i>0){
-			 			dian[i-1].style.backgroundColor='white';
-			 			dian[i-1].style.color='black';
-			 		}
-			 		else{
-			 			dian[5].style.backgroundColor='white';
-			 			dian[5].style.color='black';
-			 		}
-		 		}
-			 	animate1(img[i],'left',parseInt(getStyle(img[i],'left'))+800);
-	 		}
-	 	}
-	 }
-	 function animate5(obj,attr,num){
-		var a=parseInt(getStyle(obj,attr));
-		var m=a;
-		var id=setInterval(function(){
-			if(a!=m+num)
-				obj.style[attr]=(a+=10)+"px";
-			else
-				clearInterval(id);
-		},10);
-	}*/
-	 //轮播对应圆点
-	 for (var i = dian.length - 1; i >= 0; i--) {
-	 	dian[i].onclick=function(){
-
-	 	}
-	 }
 	 //公告移入移出
 	 var gonggao=document.getElementById('gonggao');
 	 gonggao.onmouseover=function(){
@@ -253,6 +215,5 @@ window.onload=function() {
 	 	gg();
 	 }
 }
-//轮播图滑动变速
-//点击事件
-//公告和轮播图滑动参数
+
+
